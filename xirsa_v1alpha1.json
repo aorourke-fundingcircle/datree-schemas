@@ -1,0 +1,296 @@
+{
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "properties": {
+        "claimRef": {
+          "properties": {
+            "apiVersion": {
+              "type": "string"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "namespace": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "apiVersion",
+            "kind",
+            "namespace",
+            "name"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "compositionRef": {
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "compositionRevisionRef": {
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "compositionRevisionSelector": {
+          "properties": {
+            "matchLabels": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "matchLabels"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "compositionSelector": {
+          "properties": {
+            "matchLabels": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "matchLabels"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "compositionUpdatePolicy": {
+          "default": "Automatic",
+          "enum": [
+            "Automatic",
+            "Manual"
+          ],
+          "type": "string"
+        },
+        "environmentConfigRefs": {
+          "items": {
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "apiVersion",
+              "kind"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "type": "array"
+        },
+        "managedPolicyArns": {
+          "default": "",
+          "description": "Comma-separated list of Managed Policy ARNs to attach to the IAM role",
+          "type": "string"
+        },
+        "policyJson": {
+          "default": "",
+          "description": "JSON IAM policy to attach to the IAM role",
+          "type": "string"
+        },
+        "publishConnectionDetailsTo": {
+          "properties": {
+            "configRef": {
+              "default": {
+                "name": "default"
+              },
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "type": "object",
+              "additionalProperties": false
+            },
+            "metadata": {
+              "properties": {
+                "annotations": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object"
+                },
+                "labels": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "type": "object",
+              "additionalProperties": false
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        },
+        "resourceRefs": {
+          "items": {
+            "properties": {
+              "apiVersion": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "apiVersion",
+              "kind"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "type": "array"
+        },
+        "roleAccount": {
+          "default": "current",
+          "description": "Account in which the IAM role should be created",
+          "enum": [
+            "current",
+            "legacy"
+          ],
+          "type": "string"
+        },
+        "roleSuffix": {
+          "description": "IAM role name suffix in the format eks-{region}-{cluster}-{suffix}",
+          "type": "string"
+        },
+        "serviceAccountName": {
+          "description": "Kubernetes service account that can assume the IAM role",
+          "type": "string"
+        },
+        "writeConnectionSecretToRef": {
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "namespace": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "namespace"
+          ],
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "roleSuffix",
+        "serviceAccountName"
+      ],
+      "type": "object",
+      "additionalProperties": false
+    },
+    "status": {
+      "properties": {
+        "conditions": {
+          "description": "Conditions of the resource.",
+          "items": {
+            "properties": {
+              "lastTransitionTime": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          },
+          "type": "array"
+        },
+        "connectionDetails": {
+          "properties": {
+            "lastPublishedTime": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "additionalProperties": false
+        },
+        "roleArn": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "spec"
+  ],
+  "type": "object"
+}

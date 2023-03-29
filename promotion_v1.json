@@ -1,0 +1,26 @@
+{
+  "properties": {
+    "status": {
+      "properties": {
+        "decisions": {
+          "items": {
+            "properties": {
+              "clusterName": {
+                "type": "string"
+              },
+              "targetRef": {
+                "type": "string"
+              }
+            },
+            "type": "object",
+            "additionalProperties": false
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false
+    }
+  },
+  "type": "object"
+}
